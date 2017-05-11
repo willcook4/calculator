@@ -26,7 +26,7 @@
       <button class="calcBtn" data-type="num">3</button>
 
       <button class="calcBtn" data-type="num">0</button>
-      <button class="calcBtn">Save</button>
+      <button class="calcBtn" data-type="save">Save</button>
       <button class="calcBtn" data-type="cancel">Cancel</button>
       <button class="calcBtn">.</button>
       <button class="calcBtn" data-type="equals">=</button>
@@ -36,6 +36,24 @@
       <button class="calcBtn" data-type="operator">&divide;</button>
       <button class="calcBtn" data-type="operator">x</button>
 
+      <!-- Saved Maths -->
+      <div>
+        <div class="slot1">
+          <p>Slot1:</p>
+          <p>Name: <span class="slot1Name"></span> / Date: <span class="slot1Time"></span></p>
+          <button class="calcBtn" data-type="delete">Delete</button>
+        </div>
+        <div class="slot2">
+          <p>Slot1:</p>
+          <p>Name: <span class="slot2Name"></span> / Date: <span class="slot2Time"></span></p>
+          <button class="calcBtn" data-type="delete">Delete</button>
+        </div>
+        <div class="slot3">
+          <p>Slot1:</p>
+          <p>Name: <span class="slot3Name"></span> / Date: <span class="slot3Time"></span></p>
+          <button class="calcBtn" data-type="delete">Delete</button>
+        </div>
+      </div>
     </div>
 
   </main>
@@ -49,6 +67,7 @@
     </ul>
   </footer>
 
+  <script src="./moment-with-locales.min.js"></script>
   <script src="./main.js"></script>
 </body>
 </html>

@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
   var secondNum = null;
   var operator = null;
   var result = null;
+  // Save slots
+  var slot1 = null;
+  var slot2 = null;
+  var slot3 = null;
 
   // Set the results box to zero like a real calc
 
@@ -23,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // If the button pressed is a number...
       if(event.target.dataset.type === 'num') {
 
-        if(firstNum === undefined) {
+        if(firstNum === null) {
           // Then set firstnumber..
           firstNum = event.target.innerHTML;
           // console.log('should happen only once');
@@ -32,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
           // If the button pressed is a number and a number exists concat onto it
           firstNum = firstNum + event.target.innerHTML;
 
-        } else if(!!firstNum === true && !!operator === true && secondNum === undefined){
+        } else if(!!firstNum === true && !!operator === true && secondNum === null){
           // Then set secondNum..
           secondNum = event.target.innerHTML;
 
@@ -79,18 +83,94 @@ document.addEventListener('DOMContentLoaded', function() {
       // If Cancel is pressed then ...
       if(event.target.dataset.type === 'cancel' ) {
         result = null;
+        firstNum = null;
+        secondNum = null;
+        operator = null;
         console.log('Reset Pressesd');
       }
 
       // If Save is Pressed then...
-      if(event.target.dataset.type === 'cancel' ) {
+      // Save your current math into Saved Maths. The user will be
+      // prompted to submit a name
+      if(event.target.dataset.type === 'save' ) {
+        var slotName = prompt('Choose a name for the calculation', 'e.g. First Row');
+        var slotTime = moment().format('Do  MMM, h:mm a');
+
+        // Check for a free slot and use that to save the result...
+        if(slot1 === null) {
+          // Save the info in an object
+          slot1 = {
+            'name': slotName,
+            'time': slotTime,
+            'firstNum': firstNum,
+            'secondNum': secondNum,
+            'operator': operator,
+            'result': result
+          };
+          // Update the view
+          document.getElementsByClassName('slot1Name')[0].innerHTML = slotName;
+          document.getElementsByClassName('slot1Time')[0].innerHTML = slotTime;
+
+        } else if (slot1 && slot2 === null) {
+          slot2 = {
+            'name': slotName,
+            'time': slotTime,
+            'firstNum': firstNum,
+            'secondNum': secondNum,
+            'operator': operator,
+            'result': result
+          };
+
+          document.getElementsByClassName('slot2Name')[0].innerHTML = slotName;
+          document.getElementsByClassName('slot2Time')[0].innerHTML = slotTime;
+
+        } else if (slot1 && slot2 && slot3 === null) {
+          slot3 = {
+            'name': slotName,
+            'time': slotTime,
+            'firstNum': firstNum,
+            'secondNum': secondNum,
+            'operator': operator,
+            'result': result
+          };
+
+          document.getElementsByClassName('slot3Name')[0].innerHTML = slotName;
+          document.getElementsByClassName('slot3Time')[0].innerHTML = slotTime;
+        }
+      }
+
+      // If delete button in a slot is clicked...
+      if(event.target.dataset.type === 'delete' ) {
+        // Remove the info from the var...
+        // Remove from the view...
+        var slotToDelete = event.target.parentElement.className;
+        console.log('Deleting...', event.target.parentElement.className);
+        switch(slotToDelete) {
+          case 'slot1':
+            console.log('deleting slot 1');
+            slot1 = null;
+            document.getElementsByClassName('slot1Name')[0].innerHTML =  '- empty -';
+            document.getElementsByClassName('slot1Time')[0].innerHTML = '';
+            break;
+          case 'slot2':
+            console.log('deleting slot 2');
+            slot2 = null;
+            document.getElementsByClassName('slot2Name')[0].innerHTML =  '- empty -';
+            break
+        }
       }
 
 
-      console.log('firstnumber: ', firstNum);
-      console.log('operator', operator);
-      console.log('secondNum', secondNum);
 
+      // Debug...
+      console.log('firstnumber: ', firstNum);
+      console.log('operator: ', operator);
+      console.log('secondNum: ', secondNum);
+      console.log('==================');
+      console.log('slot1: ', slot1);
+      console.log('slot2: ', slot2);
+      console.log('slot3: ', slot3);
+      console.log('==================');
     });
   }
 });
