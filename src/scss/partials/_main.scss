@@ -1,0 +1,22 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: $body-background-color;
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  text-align: center;
+}
+
+main {
+  max-width: 320px * 2;
+  padding: 1em;
+  margin: 1em auto;
+  background-color: grey;
+  height: 70%;
+  color: #fff;
+  @include border-radius(5px); /* and we're passing it the radius we want.*/
+}
