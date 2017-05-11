@@ -11,7 +11,7 @@
     <h1>SYZYGY Calc</h1>
   </header>
   <main>
-    <div class="result">Result</div>
+    <div id="display">Result</div>
     <div>
       <button class="calcBtn" data-type="num">7</button>
       <button class="calcBtn" data-type="num">8</button>
@@ -28,7 +28,7 @@
       <button class="calcBtn" data-type="num">0</button>
       <button class="calcBtn" data-type="save">Save</button>
       <button class="calcBtn" data-type="cancel">Cancel</button>
-      <button class="calcBtn">.</button>
+      <button class="calcBtn" data-type="num">.</button>
       <button class="calcBtn" data-type="equals">=</button>
 
       <button class="calcBtn" data-type="operator">+</button>
@@ -39,18 +39,15 @@
       <!-- Saved Maths -->
       <div>
         <div class="slot1">
-          <p>Slot1:</p>
-          <p>Name: <span class="slot1Name"></span> / Date: <span class="slot1Time"></span></p>
+          <p class="calcBtn" data-type="slot1"><span>Slot 1:  </span>Name: <span class="slot1Name">- empty -</span> / Date: <span class="slot1Time"></span>- empty -</p>
           <button class="calcBtn" data-type="delete">Delete</button>
         </div>
         <div class="slot2">
-          <p>Slot1:</p>
-          <p>Name: <span class="slot2Name"></span> / Date: <span class="slot2Time"></span></p>
+          <p class="calcBtn" data-type="slot2"><span>Slot 2:  </span>Name: <span class="slot2Name">- empty -</span> / Date: <span class="slot2Time"></span>- empty -</p>
           <button class="calcBtn" data-type="delete">Delete</button>
         </div>
         <div class="slot3">
-          <p>Slot1:</p>
-          <p>Name: <span class="slot3Name"></span> / Date: <span class="slot3Time"></span></p>
+          <p class="calcBtn" data-type="slot3"><span>Slot 3:  </span>Name: <span class="slot3Name">- empty -</span> / Date: <span class="slot3Time">- empty -</span></p>
           <button class="calcBtn" data-type="delete">Delete</button>
         </div>
       </div>
