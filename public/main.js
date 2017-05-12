@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
   for (var i = 0; i < calcButtons.length; i++) {
     calcButtons[i].addEventListener('click', function(event){
       event.preventDefault();
-      console.log('Button Pressed: ', event.target.innerHTML);
+      // console.log('Button Pressed: ', event.target.innerHTML);
       // console.log(event);
       // console.log(event.target.dataset.type);
 
@@ -112,23 +112,23 @@ document.addEventListener('DOMContentLoaded', function() {
         if(!!operator === true && !equalsPressed) {
           switch(operator) {
             case '+':
-              console.log('Adding...');
+              // console.log('Adding...');
               result = parseFloat(firstNum) + parseFloat(secondNum);
               break;
             case '-':
-              console.log('Subtracting...');
+              // console.log('Subtracting...');
               result = parseFloat(firstNum) - parseFloat(secondNum);
               break;
             case 'x':
-              console.log('Multiplying...');
+              // console.log('Multiplying...');
               result = parseFloat(firstNum) * parseFloat(secondNum);
               break;
             case '÷':
-              console.log('Dividing...');
+              // console.log('Dividing...');
               result = parseFloat(firstNum) / parseFloat(secondNum);
               break;
           }
-          console.log('Answer:', result);
+          // console.log('Answer:', result);
           updateDisplay(result);
           equalsPressed = true;
         }
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
         firstNum = null;
         secondNum = null;
         operator = null;
-        console.log('Reset Pressesd');
+        // console.log('Reset Pressesd');
         displayText = '';
         updateDisplay('Result');
         equalsPressed = false;
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
             firstNum = null;
             secondNum = null;
             operator = null;
-            console.log('All vars reset!');
+            // console.log('All vars reset!');
 
           } else if (slot1 && slot2 === null) {
             slot2 = {
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
             firstNum = null;
             secondNum = null;
             operator = null;
-            console.log('All vars reset!');
+            // console.log('All vars reset!');
 
           } else if (slot1 && slot2 && slot3 === null) {
             slot3 = {
@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
             firstNum = null;
             secondNum = null;
             operator = null;
-            console.log('All vars reset!');
+            // console.log('All vars reset!');
           } else {
             //
           }
@@ -234,36 +234,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // If delete button in a slot is clicked...
       if(event.target.dataset.type === 'delete' ) {
-        // Remove the info from the var...
-        // Remove from the view...
-        var slotToDelete = event.target.parentElement.className;
+        var obj = event.target.parentElement;
+        console.log('Thing clicked:', obj.getElementsByTagName('p')[0].innerHTML.includes('- empty -'));
 
-        // console.log('Deleting...', event.target.parentElement.className);
+        //If button clicked is an empty section prompt a message...
+        if(obj.getElementsByTagName('p')[0].innerHTML.includes('- empty -')) {
+          alert('That slot is empty already...');
+        } else {
+          // Remove the info from the var...
+          // Remove from the view...
+          var slotToDelete = event.target.parentElement.className;
 
-        switch(slotToDelete) {
-          case 'slot1':
-            console.log('deleting slot 1');
-            slot1 = null;
-            document.getElementsByClassName('slot1Name')[0].innerHTML =  '- empty -';
-            document.getElementsByClassName('slot1Time')[0].innerHTML =  '- empty -';
-            document.getElementsByClassName('slot1Time')[0].dataset.time = firstVisitTime;
-            break;
-          case 'slot2':
-            console.log('deleting slot 2');
-            slot2 = null;
-            document.getElementsByClassName('slot2Name')[0].innerHTML =  '- empty -';
-            document.getElementsByClassName('slot2Time')[0].innerHTML =  '- empty -';
-            document.getElementsByClassName('slot2Time')[0].dataset.time = firstVisitTime;
-            break;
-          case 'slot3':
-            console.log('deleting slot 3');
-            slot3 = null;
-            document.getElementsByClassName('slot3Name')[0].innerHTML =  '- empty -';
-            document.getElementsByClassName('slot3Time')[0].innerHTML =  '- empty -';
-            document.getElementsByClassName('slot3Time')[0].dataset.time = firstVisitTime;
-            break;
+          // console.log('Deleting...', event.target.parentElement.className);
+
+          switch(slotToDelete) {
+            case 'slot1':
+              // console.log('deleting slot 1');
+              slot1 = null;
+              document.getElementsByClassName('slot1Name')[0].innerHTML =  '- empty -';
+              document.getElementsByClassName('slot1Time')[0].innerHTML =  '- empty -';
+              document.getElementsByClassName('slot1Time')[0].dataset.time = firstVisitTime;
+              break;
+            case 'slot2':
+              // console.log('deleting slot 2');
+              slot2 = null;
+              document.getElementsByClassName('slot2Name')[0].innerHTML =  '- empty -';
+              document.getElementsByClassName('slot2Time')[0].innerHTML =  '- empty -';
+              document.getElementsByClassName('slot2Time')[0].dataset.time = firstVisitTime;
+              break;
+            case 'slot3':
+              // console.log('deleting slot 3');
+              slot3 = null;
+              document.getElementsByClassName('slot3Name')[0].innerHTML =  '- empty -';
+              document.getElementsByClassName('slot3Time')[0].innerHTML =  '- empty -';
+              document.getElementsByClassName('slot3Time')[0].dataset.time = firstVisitTime;
+              break;
+          }
+          sortUnorderedList();
         }
-        sortUnorderedList();
       }
 
       // Recall a previous result...
@@ -271,15 +279,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // var slotSelected = event.target.parentElement.className;
         var slotSelected = event.target.dataset.type;
-        console.log('slotSelected', slotSelected);
+        // console.log('slotSelected', slotSelected);
 
         // If you select an empty slot
         if(slotSelected === 'slot1' && slot1 === null ||
            slotSelected === 'slot2' && slot2 === null ||
            slotSelected === 'slot3' && slot3 === null ) {
-          alert('That slot is empty');
+          alert('That slot is empty, choose another...');
         } else {
-          console.log('Recalling: ', event.target.dataset.type);
+          // console.log('Recalling: ', event.target.dataset.type);
           switch (slotSelected) {
             case 'slot1':
               firstNum = slot1.firstNum;
@@ -304,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
       // Debugging...
-      debugOutput();
+      // debugOutput();
     });
   }
 });

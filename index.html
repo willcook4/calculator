@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CalcTest</title>
+  <link href="https://fonts.googleapis.com/css?family=Baloo|Poppins:600" rel="stylesheet">
+  <link rel="stylesheet" href="./normalize.css">
+  <link rel="stylesheet" href="./skeleton.css">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -12,71 +15,153 @@
   </header>
   <main>
     <div id="display">Result</div>
-    <div>
-      <button class="calcBtn" data-type="num">7</button>
-      <button class="calcBtn" data-type="num">8</button>
-      <button class="calcBtn" data-type="num">9</button>
 
-      <button class="calcBtn" data-type="num">4</button>
-      <button class="calcBtn" data-type="num">5</button>
-      <button class="calcBtn" data-type="num">6</button>
+    <div class="container clearfix">
 
-      <button class="calcBtn" data-type="num">1</button>
-      <button class="calcBtn" data-type="num">2</button>
-      <button class="calcBtn" data-type="num">3</button>
+      <!-- Start Mobile HTML-->
+      <div class="row mobile">
+        <button class="calcBtn three columns" data-type="num">7</button>
+        <button class="calcBtn three columns" data-type="num">8</button>
+        <button class="calcBtn three columns" data-type="num">9</button>
+      </div>
+      <div class="row mobile">
+        <button class="calcBtn three columns" data-type="num">4</button>
+        <button class="calcBtn three columns" data-type="num">5</button>
+        <button class="calcBtn three columns" data-type="num">6</button>
+      </div>
+      <div class="row mobile">
+        <button class="calcBtn three columns" data-type="num">1</button>
+        <button class="calcBtn three columns" data-type="num">2</button>
+        <button class="calcBtn three columns" data-type="num">3</button>
+      </div>
+      <div class="row mobile">
+        <button class="calcBtn three columns" data-type="num">0</button>
+        <button class="calcBtn three columns" data-type="operator">+</button>
+        <button class="calcBtn three columns" data-type="operator">-</button>
+      </div>
+      <div class="row mobile">
+        <button class="calcBtn three columns" data-type="num">.</button>
+        <button class="calcBtn three columns" data-type="operator">x</button>
+        <button class="calcBtn three columns" data-type="operator">&divide;</button>
+      </div>
 
-      <button class="calcBtn" data-type="num">0</button>
-      <button class="calcBtn" data-type="save">Save</button>
-      <button class="calcBtn" data-type="cancel">Cancel</button>
-      <button class="calcBtn" data-type="num">.</button>
-      <button class="calcBtn" data-type="equals">=</button>
+      <div class="row mobile">
+        <button class="calcBtn eleven columns equals" data-type="equals">=</button>
+      </div>
 
-      <button class="calcBtn" data-type="operator">+</button>
-      <button class="calcBtn" data-type="operator">-</button>
-      <button class="calcBtn" data-type="operator">&divide;</button>
-      <button class="calcBtn" data-type="operator">x</button>
+      <div class="row mobile">
+        <button class="calcBtn six columns save" data-type="save">Save</button>
+        <button class="calcBtn six columns cancel" data-type="cancel">Cancel</button>
+      </div>
+      <!-- End Mobile HTML -->
 
-      <!-- Saved Maths -->
-      <!-- <div>
-        <div class="slot1">
-          <p class="calcBtn" data-type="slot1"><span>Slot 1:  </span>Name: <span class="slot1Name">- empty -</span> / Date: <span class="slot1Time">- empty -</span></p>
-          <button class="calcBtn" data-type="delete">Delete</button>
+      <!-- Start Tablet HTML-->
+      <div class="row tablet">
+        <button class="calcBtn three columns" data-type="num">7</button>
+        <button class="calcBtn three columns" data-type="num">8</button>
+        <button class="calcBtn three columns" data-type="num">9</button>
+        <button class="calcBtn three columns" data-type="operator">+</button>
+      </div>
+
+      <div class="row tablet">
+        <button class="calcBtn three columns" data-type="num">4</button>
+        <button class="calcBtn three columns" data-type="num">5</button>
+        <button class="calcBtn three columns" data-type="num">6</button>
+        <button class="calcBtn three columns" data-type="operator">-</button>
+      </div>
+      <div class="row tablet">
+        <button class="calcBtn three columns" data-type="num">1</button>
+        <button class="calcBtn three columns" data-type="num">2</button>
+        <button class="calcBtn three columns" data-type="num">3</button>
+        <button class="calcBtn three columns" data-type="operator">x</button>
+      </div>
+      <div class="row tablet">
+        <button class="calcBtn three columns" data-type="num">0</button>
+        <button class="calcBtn three columns save" data-type="save">Save</button>
+        <button class="calcBtn three columns cancel" data-type="cancel">Cancel</button>
+        <button class="calcBtn three columns" data-type="operator">&divide;</button>
+      </div>
+      <div class="row tablet lifted">
+        <button class="calcBtn three columns" data-type="num">.</button>
+        <button class="calcBtn three columns hidden"></button>
+        <button class="calcBtn three columns hidden"></button>
+        <button class="calcBtn three columns" data-type="equals">=</button>
+      </div>
+      <!-- End Tablet HTML -->
+
+      <!-- Start Desktop HTML -->
+      <div class="desktop main">
+        <div class="row">
+          <button class="calcBtn three columns" data-type="num">7</button>
+          <button class="calcBtn three columns" data-type="num">8</button>
+          <button class="calcBtn three columns" data-type="num">9</button>
+          <button class="calcBtn three columns" data-type="operator">+</button>
         </div>
-        <div class="slot2">
-          <p class="calcBtn" data-type="slot2"><span>Slot 2:  </span>Name: <span class="slot2Name">- empty -</span> / Date: <span class="slot2Time">- empty -</span></p>
-          <button class="calcBtn" data-type="delete">Delete</button>
+
+        <div class="row">
+          <button class="calcBtn three columns" data-type="num">4</button>
+          <button class="calcBtn three columns" data-type="num">5</button>
+          <button class="calcBtn three columns" data-type="num">6</button>
+          <button class="calcBtn three columns" data-type="operator">-</button>
         </div>
-        <div class="slot3">
-          <p class="calcBtn" data-type="slot3"><span>Slot 3:  </span>Name: <span class="slot3Name">- empty -</span> / Date: <span class="slot3Time">- empty -</span></p>
-          <button class="calcBtn" data-type="delete">Delete</button>
+        <div class="row">
+          <button class="calcBtn three columns" data-type="num">1</button>
+          <button class="calcBtn three columns" data-type="num">2</button>
+          <button class="calcBtn three columns" data-type="num">3</button>
+          <button class="calcBtn three columns" data-type="operator">x</button>
         </div>
-      </div> -->
+        <div class="row">
+          <button class="calcBtn three columns" data-type="num">0</button>
+          <button class="calcBtn three columns save" data-type="save">Save</button>
+          <button class="calcBtn three columns cancel" data-type="cancel">Cancel</button>
+          <button class="calcBtn three columns" data-type="operator">&divide;</button>
+        </div>
+        <div class="row lifted">
+          <button class="calcBtn three columns" data-type="num">.</button>
+          <button class="calcBtn three columns hidden"></button>
+          <button class="calcBtn three columns hidden"></button>
+          <button class="calcBtn three columns" data-type="equals">=</button>
+        </div>
+      </div>
+
+      <ul id="list">
+        <li class="slot1">
+          <p class="calcBtn" data-type="slot1">Name: <span class="slot1Name" data-type="slot1">- empty -</span> Date: <span class="slot1Time" data-time="" data-type="slot1">- empty -</span></p>
+          <button class="calcBtn delete" data-type="delete">Delete</button>
+        </li>
+        <li class="slot2">
+          <p class="calcBtn" data-type="slot2">Name: <span class="slot2Name" data-type="slot2">- empty -</span> Date: <span class="slot2Time" data-time="" data-type="slot2">- empty -</span></p>
+          <button class="calcBtn delete" data-type="delete">Delete</button>
+        </li>
+        <li class="slot3">
+          <p class="calcBtn" data-type="slot3">Name: <span class="slot3Name" data-type="slot3">- empty -</span> Date: <span class="slot3Time" data-time="" data-type="slot3">- empty -</span></p>
+          <button class="calcBtn delete" data-type="delete">Delete</button>
+        </li>
+      </ul>
+      <!-- End Desktop HTML -->
+
     </div>
 
-    <ul id="list">
+
+
+    <ul id="list" class="mobile tablet">
       <li class="slot1">
         <p class="calcBtn" data-type="slot1">Name: <span class="slot1Name" data-type="slot1">- empty -</span> Date: <span class="slot1Time" data-time="" data-type="slot1">- empty -</span></p>
-        <button class="calcBtn" data-type="delete">Delete 1</button>
+        <button class="calcBtn delete" data-type="delete">Delete</button>
       </li>
       <li class="slot2">
         <p class="calcBtn" data-type="slot2">Name: <span class="slot2Name" data-type="slot2">- empty -</span> Date: <span class="slot2Time" data-time="" data-type="slot2">- empty -</span></p>
-        <button class="calcBtn" data-type="delete">Delete 2</button>
+        <button class="calcBtn delete" data-type="delete">Delete</button>
       </li>
       <li class="slot3">
         <p class="calcBtn" data-type="slot3">Name: <span class="slot3Name" data-type="slot3">- empty -</span> Date: <span class="slot3Time" data-time="" data-type="slot3">- empty -</span></p>
-        <button class="calcBtn" data-type="delete">Delete 3</button>
+        <button class="calcBtn delete" data-type="delete">Delete</button>
       </li>
     </ul>
 
   </main>
   <footer>
-      <a href="http://doubleucook.com">Will Cook</a>
-    <p class="date"> &copy; 2017</p>
-
-    <ul class="social_buttons">
-      <li><a class="fb" href="#">Linked In</a></li>
-      <li><a class="gplus" href="#">Email</a></li>
-    </ul>
+      <a href="http://doubleucook.com">Will Cook &copy; 2017</a>
   </footer>
 
   <script src="./moment-with-locales.min.js"></script>

@@ -1,38 +1,98 @@
-// html, body {
-//   margin: 0;
-//   height: 100%;
-//   min-height: 100%;
-// }
-//
-// body {
-//   background: $body-background-color;
-//   font-family: Helvetica,Arial,sans-serif;
-//   font-size: 14px;
-//   text-align: center;
-// }
-//
-// main {
-//   max-width: 320px * 2;
-//   padding: 1em;
-//   margin: 1em auto;
-//   background-color: grey;
-//   height: 70%;
-//   color: #fff;
-//   @include border-radius(5px); /* and we're passing it the radius we want.*/
-// }
+
+/* Mobile first... */
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  background-color: $true-white-color;
+  text-align: center;
+}
+
+main {
+  background: $body-background-color;
+}
+
+h1{
+  font-family: 'Baloo', cursive;
+  color: $body-background-color;
+  margin-top: 10px;
+  margin-bottom: 3px;
+}
+
+#display {
+  font-size: 2em;
+  font-family: 'Poppins', sans-serif;
+  color: $Highlight-green-color;
+}
+
+// Over-ride the skeleton mobile behaviour
+.column,
+.columns {
+  width: 28%;
+  margin: 2%;
+}
+
+.equals {
+  width: 93%;
+  margin: 2%;
+}
+
+.save, .cancel {
+  width: 44%;
+}
+
+.cancel {
+  padding-left: 22px;
+}
+
+.calcBtn {
+  font-size: 1.2em;
+}
+
+button, .button {
+  margin-bottom: 1rem;
+}
+button:hover {
+  background-color: $Highlight-green-color;
+}
 
 ul li {
   display: block;
+  border-bottom: 0.5px dashed $true-white-color;
+}
+
+#list {
+  padding-left: 0px;
+}
+#list li p {
+  margin: 0.7em;
+  color: $Highlight-green-color;
 }
 
 #list li p span {
   color: black;
+  font-family: 'Poppins', sans-serif;
 }
 
-/* Mobile first... */
-
-h1{
-  color: red;
+.tablet, .desktop {
+  display: none;
 }
 
 
@@ -40,12 +100,51 @@ h1{
 e.g.  iPad 1 and 2
 Portrait and Landscape */
 @media only screen
-  and (min-width: 569px)
+  and (min-width: 550px)
   and (max-width: 1024px)
   and (-webkit-min-device-pixel-ratio: 1) {
 
   h1{
-    color: blue;
+    color: $Mid-title-color;
+  }
+
+  .tablet {
+    display: block;
+  }
+
+  .mobile, .desktop {
+    display: none;
+  }
+
+  .column, .columns {
+    width: 20%;
+  }
+
+  .cancel, .save {
+    height: 6.8em;
+    margin: 2%;
+    position: relative;
+    z-index: 100;
+    font-size: 14px;
+    margin-bottom: -3px;
+  }
+
+  .hidden {
+    // background-color: grey;
+    visibility: hidden;
+  }
+
+  .lifted {
+    float: left;
+    position: relative;
+    top: -45px;
+    width: 100%;
+    z-index: 1;
+  }
+
+  #list {
+    width: 75%;
+    margin: 0 auto;
   }
 }
 
@@ -56,6 +155,46 @@ Anything bigger than 1024px */
   and (-webkit-min-device-pixel-ratio: 1) {
 
   h1{
-    color: green;
+    color: $Dark-title-color;
   }
+
+  .mobile, .tablet {
+    display: none;
+  }
+  .desktop {
+    display: block;
+  }
+
+  .lifted {
+    float: left;
+    position: relative;
+    top: -59px;
+    width: 100%;
+    z-index: 1;
+  }
+  .container {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .hidden {
+    visibility: hidden;
+  }
+
+  .cancel, .save {
+    height: 5.4em;
+    margin: 2%;
+    position: relative;
+    z-index: 100;
+  }
+
+  .main {
+    float: left;
+    width: 60%;
+  }
+
+  #list {
+    float: right;
+    width: 36%;
+  }
+
 }
