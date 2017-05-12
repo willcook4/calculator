@@ -1,8 +1,14 @@
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('Calc script loaded');
+// ESLint Setup, modules external to this one...
+/* global tinysort, moment */
 
-  //Globals
-  var displayText = "";
+document.addEventListener('DOMContentLoaded', function() {
+  // console.log('Calc script loaded');
+  ////// DOM Setup /////
+  setTimeForSort();
+
+  ////// Globals //////
+  var equalsPressed = false;
+  var displayText = '';
   var firstNum = null;
   var secondNum = null;
   var operator = null;
@@ -11,16 +17,45 @@ document.addEventListener('DOMContentLoaded', function() {
   var slot1 = null;
   var slot2 = null;
   var slot3 = null;
+  // Time the page is first loaded (user epoch)
+  var firstVisitTime;
 
 
-  // Functions
+  ////// Functions //////
+  // Update the 'display' text
   function updateDisplay(input) {
     var textToDisplay = displayText + input;
     document.getElementById('display').innerHTML = textToDisplay;
   }
-  // Set the results box to zero like a real calc
 
-  // Setup listeners on the buttons
+  // Sorting the Slots by data datetime
+  function sortUnorderedList() {
+    tinysort('ul#list>li', {selector: 'span[data-time]', data: 'time', order: 'desc'});
+  }
+
+  // Set the - empty - time variable to when the user first visits the page...
+  function setTimeForSort() {
+    firstVisitTime = moment().format('x');
+    document.getElementsByClassName('slot1Time')[0].dataset.time = firstVisitTime;
+    document.getElementsByClassName('slot2Time')[0].dataset.time = firstVisitTime;
+    document.getElementsByClassName('slot3Time')[0].dataset.time = firstVisitTime;
+  }
+
+  // Debug...
+  function debugOutput(){
+    console.log('firstnumber: ', firstNum);
+    console.log('operator: ', operator);
+    console.log('secondNum: ', secondNum);
+    console.log('Answer', result);
+    console.log('equalsPressed', equalsPressed);
+    console.log('==================');
+    console.log('slot1: ', slot1);
+    console.log('slot2: ', slot2);
+    console.log('slot3: ', slot3);
+    console.log('==================');
+  }
+
+  // Setup listeners on the buttons...
   var calcButtons = document.querySelectorAll('.calcBtn');
   for (var i = 0; i < calcButtons.length; i++) {
     calcButtons[i].addEventListener('click', function(event){
@@ -61,13 +96,20 @@ document.addEventListener('DOMContentLoaded', function() {
       // If button pressed is an operator ( +, -, x, / )...
       if(event.target.dataset.type === 'operator' ) {
         operator = event.target.innerHTML;
+        if(equalsPressed === true) {
+          // If an answer has been calculated already so change the firstNum to result
+          // console.log('this is where to swap the numbers....');
+          firstNum = result;
+          secondNum = null;
+          equalsPressed = false;
+        }
       }
 
       // If button pressed is equals...
       if(event.target.dataset.type === 'equals' ) {
-        console.log(operator);
-        //If an operator has been set do the math
-        if(!!operator === true) {
+        // console.log(operator);
+        //If an operator has been choosen do the math...
+        if(!!operator === true && !equalsPressed) {
           switch(operator) {
             case '+':
               console.log('Adding...');
@@ -88,6 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
           }
           console.log('Answer:', result);
           updateDisplay(result);
+          equalsPressed = true;
         }
       }
 
@@ -100,6 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Reset Pressesd');
         displayText = '';
         updateDisplay('Result');
+        equalsPressed = false;
       }
 
       // If Save is Pressed then...
@@ -109,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // If a slot is empty...
         if(slot1 === null || slot2 === null || slot3 === null) {
           var slotName = prompt('Choose a name for the calculation', 'e.g. First Row');
-          var slotTime = moment().format('Do  MMM, h:mm a');
+          var slotTime = moment();
 
         // Check for a free slot and use that to save the result...
           if(slot1 === null) {
@@ -124,14 +168,15 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             // Update the view
             document.getElementsByClassName('slot1Name')[0].innerHTML = slotName;
-            document.getElementsByClassName('slot1Time')[0].innerHTML = slotTime;
+            document.getElementsByClassName('slot1Time')[0].innerHTML = moment(slotTime).format('Do  MMM, h:mm a');
+            document.getElementsByClassName('slot1Time')[0].dataset.time = moment(slotTime).format('x');
 
             // Clear the numbers, Reset
             result = null;
             firstNum = null;
             secondNum = null;
             operator = null;
-            console.log('All vars reset');
+            console.log('All vars reset!');
 
           } else if (slot1 && slot2 === null) {
             slot2 = {
@@ -144,14 +189,15 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             document.getElementsByClassName('slot2Name')[0].innerHTML = slotName;
-            document.getElementsByClassName('slot2Time')[0].innerHTML = slotTime;
+            document.getElementsByClassName('slot2Time')[0].innerHTML = moment(slotTime).format('Do  MMM, h:mm a');
+            document.getElementsByClassName('slot2Time')[0].dataset.time = moment(slotTime).format('x');
 
             // Clear the numbers, Reset
             result = null;
             firstNum = null;
             secondNum = null;
             operator = null;
-            console.log('All vars reset');
+            console.log('All vars reset!');
 
           } else if (slot1 && slot2 && slot3 === null) {
             slot3 = {
@@ -164,14 +210,15 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             document.getElementsByClassName('slot3Name')[0].innerHTML = slotName;
-            document.getElementsByClassName('slot3Time')[0].innerHTML = slotTime;
+            document.getElementsByClassName('slot3Time')[0].innerHTML = moment(slotTime).format('Do  MMM, h:mm a');
+            document.getElementsByClassName('slot3Time')[0].dataset.time = moment(slotTime).format('x');
 
             // Clear the numbers, Reset
             result = null;
             firstNum = null;
             secondNum = null;
             operator = null;
-            console.log('All vars reset');
+            console.log('All vars reset!');
           } else {
             //
           }
@@ -179,6 +226,10 @@ document.addEventListener('DOMContentLoaded', function() {
           // No slots are free prompt to clear one...
           alert('All slots are full, delete one and try again.');
         }
+        displayText = '';
+        updateDisplay('Saved');
+        equalsPressed = false;
+        sortUnorderedList();
       }
 
       // If delete button in a slot is clicked...
@@ -187,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Remove from the view...
         var slotToDelete = event.target.parentElement.className;
 
-        console.log('Deleting...', event.target.parentElement.className);
+        // console.log('Deleting...', event.target.parentElement.className);
 
         switch(slotToDelete) {
           case 'slot1':
@@ -195,20 +246,24 @@ document.addEventListener('DOMContentLoaded', function() {
             slot1 = null;
             document.getElementsByClassName('slot1Name')[0].innerHTML =  '- empty -';
             document.getElementsByClassName('slot1Time')[0].innerHTML =  '- empty -';
+            document.getElementsByClassName('slot1Time')[0].dataset.time = firstVisitTime;
             break;
           case 'slot2':
             console.log('deleting slot 2');
             slot2 = null;
             document.getElementsByClassName('slot2Name')[0].innerHTML =  '- empty -';
             document.getElementsByClassName('slot2Time')[0].innerHTML =  '- empty -';
+            document.getElementsByClassName('slot2Time')[0].dataset.time = firstVisitTime;
             break;
           case 'slot3':
             console.log('deleting slot 3');
             slot3 = null;
             document.getElementsByClassName('slot3Name')[0].innerHTML =  '- empty -';
             document.getElementsByClassName('slot3Time')[0].innerHTML =  '- empty -';
+            document.getElementsByClassName('slot3Time')[0].dataset.time = firstVisitTime;
             break;
         }
+        sortUnorderedList();
       }
 
       // Recall a previous result...
@@ -231,7 +286,6 @@ document.addEventListener('DOMContentLoaded', function() {
               secondNum = slot1.secondNum;
               operator = slot1.operator;
               result = slot1.result;
-
               break;
             case 'slot2':
               firstNum = slot2.firstNum;
@@ -246,20 +300,11 @@ document.addEventListener('DOMContentLoaded', function() {
               result = slot3.result;
               break;
           }
+          updateDisplay(result);
         }
       }
-
-
-
-      // Debug...
-      console.log('firstnumber: ', firstNum);
-      console.log('operator: ', operator);
-      console.log('secondNum: ', secondNum);
-      console.log('==================');
-      console.log('slot1: ', slot1);
-      console.log('slot2: ', slot2);
-      console.log('slot3: ', slot3);
-      console.log('==================');
+      // Debugging...
+      debugOutput();
     });
   }
 });

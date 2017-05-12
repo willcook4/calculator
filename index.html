@@ -37,21 +37,36 @@
       <button class="calcBtn" data-type="operator">x</button>
 
       <!-- Saved Maths -->
-      <div>
+      <!-- <div>
         <div class="slot1">
-          <p class="calcBtn" data-type="slot1"><span>Slot 1:  </span>Name: <span class="slot1Name">- empty -</span> / Date: <span class="slot1Time"></span>- empty -</p>
+          <p class="calcBtn" data-type="slot1"><span>Slot 1:  </span>Name: <span class="slot1Name">- empty -</span> / Date: <span class="slot1Time">- empty -</span></p>
           <button class="calcBtn" data-type="delete">Delete</button>
         </div>
         <div class="slot2">
-          <p class="calcBtn" data-type="slot2"><span>Slot 2:  </span>Name: <span class="slot2Name">- empty -</span> / Date: <span class="slot2Time"></span>- empty -</p>
+          <p class="calcBtn" data-type="slot2"><span>Slot 2:  </span>Name: <span class="slot2Name">- empty -</span> / Date: <span class="slot2Time">- empty -</span></p>
           <button class="calcBtn" data-type="delete">Delete</button>
         </div>
         <div class="slot3">
           <p class="calcBtn" data-type="slot3"><span>Slot 3:  </span>Name: <span class="slot3Name">- empty -</span> / Date: <span class="slot3Time">- empty -</span></p>
           <button class="calcBtn" data-type="delete">Delete</button>
         </div>
-      </div>
+      </div> -->
     </div>
+
+    <ul id="list">
+      <li class="slot1">
+        <p class="calcBtn" data-type="slot1">Name: <span class="slot1Name" data-type="slot1">- empty -</span> Date: <span class="slot1Time" data-time="" data-type="slot1">- empty -</span></p>
+        <button class="calcBtn" data-type="delete">Delete 1</button>
+      </li>
+      <li class="slot2">
+        <p class="calcBtn" data-type="slot2">Name: <span class="slot2Name" data-type="slot2">- empty -</span> Date: <span class="slot2Time" data-time="" data-type="slot2">- empty -</span></p>
+        <button class="calcBtn" data-type="delete">Delete 2</button>
+      </li>
+      <li class="slot3">
+        <p class="calcBtn" data-type="slot3">Name: <span class="slot3Name" data-type="slot3">- empty -</span> Date: <span class="slot3Time" data-time="" data-type="slot3">- empty -</span></p>
+        <button class="calcBtn" data-type="delete">Delete 3</button>
+      </li>
+    </ul>
 
   </main>
   <footer>
@@ -65,6 +80,7 @@
   </footer>
 
   <script src="./moment-with-locales.min.js"></script>
+  <script src="./tinysort.js"></script>
   <script src="./main.js"></script>
 </body>
 </html>

@@ -1,22 +1,61 @@
-html, body {
-  margin: 0;
-  height: 100%;
-  min-height: 100%;
+// html, body {
+//   margin: 0;
+//   height: 100%;
+//   min-height: 100%;
+// }
+//
+// body {
+//   background: $body-background-color;
+//   font-family: Helvetica,Arial,sans-serif;
+//   font-size: 14px;
+//   text-align: center;
+// }
+//
+// main {
+//   max-width: 320px * 2;
+//   padding: 1em;
+//   margin: 1em auto;
+//   background-color: grey;
+//   height: 70%;
+//   color: #fff;
+//   @include border-radius(5px); /* and we're passing it the radius we want.*/
+// }
+
+ul li {
+  display: block;
 }
 
-body {
-  background: $body-background-color;
-  font-family: Helvetica,Arial,sans-serif;
-  font-size: 14px;
-  text-align: center;
+#list li p span {
+  color: black;
 }
 
-main {
-  max-width: 320px * 2;
-  padding: 1em;
-  margin: 1em auto;
-  background-color: grey;
-  height: 70%;
-  color: #fff;
-  @include border-radius(5px); /* and we're passing it the radius we want.*/
+/* Mobile first... */
+
+h1{
+  color: red;
+}
+
+
+/*         Tablet
+e.g.  iPad 1 and 2
+Portrait and Landscape */
+@media only screen
+  and (min-width: 569px)
+  and (max-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+  h1{
+    color: blue;
+  }
+}
+
+/*         Desktop
+Anything bigger than 1024px */
+
+@media screen and (min-width: 1025px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+  h1{
+    color: green;
+  }
 }
