@@ -39,7 +39,7 @@ HTML has been checked to be valid with [W3](https://validator.w3.org). JavaScrip
 JavaScript ES6 was used in the sever.js file as no transcompilation is needed for the version of node used. JavaScript ES5 was used natively on browser side code.
 
 ##### Future development
-- Add unit testing with a Mocha and Chai.
+- Add unit testing with a Mocha and Chai. Or a more resolved test with a testing suite such as Saucelabs. Not done due to time restriction.
 - Add in Babel into the gulp tasks and refactor the main.js file into JavaScript ES6.
 - Further browser testing(Chrome and Safari tested so far).
 - Ensure code and all external libraries are production ready. Minimise and Uglify.
