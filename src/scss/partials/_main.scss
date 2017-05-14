@@ -78,21 +78,28 @@ ul li {
   border-bottom: 0.5px dashed $true-white-color;
 }
 
-#list {
+.list {
   padding-left: 0px;
 }
-#list li p {
+.list li p {
   margin: 0.7em;
   color: $Highlight-green-color;
 }
 
-#list li p span {
+.list li p span {
   color: black;
   font-family: 'Poppins', sans-serif;
 }
 
+.mobile {
+  position: static;
+}
+
 .tablet, .desktop {
-  display: none;
+  // display: none;
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
 }
 
 
@@ -109,11 +116,16 @@ Portrait and Landscape */
   }
 
   .tablet {
-    display: block;
+    // display: block;
+    position: static;
+    left: auto;
   }
 
   .mobile, .desktop {
-    display: none;
+    // display: none;
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
   }
 
   .column, .columns {
@@ -142,7 +154,7 @@ Portrait and Landscape */
     z-index: 1;
   }
 
-  #list {
+  .list {
     width: 75%;
     margin: 0 auto;
   }
@@ -159,10 +171,15 @@ Anything bigger than 1024px */
   }
 
   .mobile, .tablet {
-    display: none;
+    // display: none;
+   position: absolute;
+   top: -9999px;
+   left: -9999px;
   }
+
   .desktop {
-    display: block;
+    // display: block;
+    position: static;
   }
 
   .lifted {
@@ -192,7 +209,7 @@ Anything bigger than 1024px */
     width: 60%;
   }
 
-  #list {
+  .list {
     float: right;
     width: 36%;
   }

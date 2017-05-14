@@ -30,15 +30,51 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Sorting the Slots by data datetime
   function sortUnorderedList() {
-    tinysort('ul#list>li', {selector: 'span[data-time]', data: 'time', order: 'desc'});
+    var list = document.getElementsByClassName('list');
+    for (var p = 0; p < list.length; p++) {
+      console.log(list[p].children);
+      tinysort(list[p].children, {selector: 'span[data-time]', data: 'time', order: 'desc'});
+    }
+    // tinysort('ul.list>li', {selector: 'span[data-time]', data: 'time', order: 'desc'});
   }
 
-  // Set the - empty - time variable to when the user first visits the page...
+  // Set the slots all to - empty -  and data-time variable to when the user first visits the page...
   function setTimeForSort() {
     firstVisitTime = moment().format('x');
-    document.getElementsByClassName('slot1Time')[0].dataset.time = firstVisitTime;
-    document.getElementsByClassName('slot2Time')[0].dataset.time = firstVisitTime;
-    document.getElementsByClassName('slot3Time')[0].dataset.time = firstVisitTime;
+    //For mobile, tablet and desktop set data-val
+    for(var k = 0; k < 3; k++) {
+      document.getElementsByClassName('slot1Time')[k].dataset.time = firstVisitTime;
+      document.getElementsByClassName('slot2Time')[k].dataset.time = firstVisitTime;
+      document.getElementsByClassName('slot3Time')[k].dataset.time = firstVisitTime;
+    }
+
+    // document.getElementsByClassName('slot1Time')[0].dataset.time = firstVisitTime;
+    // document.getElementsByClassName('slot2Time')[0].dataset.time = firstVisitTime;
+    // document.getElementsByClassName('slot3Time')[0].dataset.time = firstVisitTime;
+  }
+
+  // Update all the viewport slots in DOM...
+  function updateSlotView(slotNum, slotName, slotTime) {
+    console.log('bang', document.getElementsByClassName( 'slot'+ slotNum + 'Name'));
+
+    for(var g=0; g < document.getElementsByClassName( 'slot'+ slotNum + 'Name').length; g++){
+      console.log('this happens..', slotNum, slotName, slotTime);
+      // Update the name on screen...
+      document.getElementsByClassName( 'slot' + slotNum + 'Name')[g].innerHTML = slotName;
+      // Update the time on screen...
+      document.getElementsByClassName('slot' + slotNum + 'Time')[g].innerHTML = moment(slotTime).format('Do  MMM, h:mm a');
+      // Update the data-time attr...
+      document.getElementsByClassName('slot'+ slotNum + 'Time')[g].dataset.time = moment(slotTime).format('x');
+    }
+  }
+
+  // Update the viewport and set data-time attr to user epoch...
+  function deleteAndUpdateView(slotNum){
+    for(var g=0; g < document.getElementsByClassName( 'slot'+ slotNum + 'Name').length; g++) {
+      document.getElementsByClassName('slot' + slotNum + 'Name')[g].innerHTML =  '- empty -';
+      document.getElementsByClassName('slot' + slotNum +'Time')[g].innerHTML =  '- empty -';
+      document.getElementsByClassName('slot' + slotNum + 'Time')[g].dataset.time = firstVisitTime;
+    }
   }
 
   // Debug...
@@ -166,11 +202,14 @@ document.addEventListener('DOMContentLoaded', function() {
               'operator': operator,
               'result': result
             };
+
             // Update the view
+            updateSlotView(1, slotName, slotTime);
+            /*
             document.getElementsByClassName('slot1Name')[0].innerHTML = slotName;
             document.getElementsByClassName('slot1Time')[0].innerHTML = moment(slotTime).format('Do  MMM, h:mm a');
             document.getElementsByClassName('slot1Time')[0].dataset.time = moment(slotTime).format('x');
-
+            */
             // Clear the numbers, Reset
             result = null;
             firstNum = null;
@@ -188,9 +227,13 @@ document.addEventListener('DOMContentLoaded', function() {
               'result': result
             };
 
+            // Update the view
+            updateSlotView(2, slotName, slotTime);
+            /*
             document.getElementsByClassName('slot2Name')[0].innerHTML = slotName;
             document.getElementsByClassName('slot2Time')[0].innerHTML = moment(slotTime).format('Do  MMM, h:mm a');
             document.getElementsByClassName('slot2Time')[0].dataset.time = moment(slotTime).format('x');
+            */
 
             // Clear the numbers, Reset
             result = null;
@@ -209,9 +252,13 @@ document.addEventListener('DOMContentLoaded', function() {
               'result': result
             };
 
+            // Update the view
+            updateSlotView(3, slotName, slotTime);
+            /*
             document.getElementsByClassName('slot3Name')[0].innerHTML = slotName;
             document.getElementsByClassName('slot3Time')[0].innerHTML = moment(slotTime).format('Do  MMM, h:mm a');
             document.getElementsByClassName('slot3Time')[0].dataset.time = moment(slotTime).format('x');
+            */
 
             // Clear the numbers, Reset
             result = null;
@@ -251,23 +298,31 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'slot1':
               // console.log('deleting slot 1');
               slot1 = null;
-              document.getElementsByClassName('slot1Name')[0].innerHTML =  '- empty -';
+              /*document.getElementsByClassName('slot1Name')[0].innerHTML =  '- empty -';
               document.getElementsByClassName('slot1Time')[0].innerHTML =  '- empty -';
               document.getElementsByClassName('slot1Time')[0].dataset.time = firstVisitTime;
+              */
+              deleteAndUpdateView(1);
               break;
             case 'slot2':
               // console.log('deleting slot 2');
               slot2 = null;
+              /*
               document.getElementsByClassName('slot2Name')[0].innerHTML =  '- empty -';
               document.getElementsByClassName('slot2Time')[0].innerHTML =  '- empty -';
               document.getElementsByClassName('slot2Time')[0].dataset.time = firstVisitTime;
+              */
+              deleteAndUpdateView(2);
               break;
             case 'slot3':
               // console.log('deleting slot 3');
               slot3 = null;
+              /*
               document.getElementsByClassName('slot3Name')[0].innerHTML =  '- empty -';
               document.getElementsByClassName('slot3Time')[0].innerHTML =  '- empty -';
               document.getElementsByClassName('slot3Time')[0].dataset.time = firstVisitTime;
+              */
+              deleteAndUpdateView(3);
               break;
           }
           sortUnorderedList();
