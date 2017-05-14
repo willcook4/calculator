@@ -80,15 +80,16 @@ ul li {
 
 .list {
   padding-left: 0px;
-}
-.list li p {
-  margin: 0.7em;
-  color: $Highlight-green-color;
-}
 
-.list li p span {
-  color: black;
-  font-family: 'Poppins', sans-serif;
+  li p {
+    margin: 0.7em;
+    color: $Highlight-green-color;
+
+    span {
+      color: black;
+      font-family: 'Poppins', sans-serif;
+    }
+  }
 }
 
 .mobile {
@@ -166,6 +167,10 @@ Anything bigger than 1024px */
 @media screen and (min-width: 1025px)
   and (-webkit-min-device-pixel-ratio: 1) {
 
+  #display {
+    padding-top: 40px;
+  }
+
   h1{
     color: $Dark-title-color;
   }
@@ -207,11 +212,13 @@ Anything bigger than 1024px */
   .main {
     float: left;
     width: 60%;
+    margin-top: -40px;
   }
 
   .list {
     float: right;
     width: 36%;
+    margin-top: -40px;
   }
 
 }

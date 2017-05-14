@@ -2,11 +2,10 @@
 /* global tinysort, moment */
 
 document.addEventListener('DOMContentLoaded', function() {
-  // console.log('Calc script loaded');
   ////// DOM Setup /////
   setTimeForSort();
 
-  ////// Globals //////
+  ////// Variables //////
   var equalsPressed = false;
   var displayText = '';
   var firstNum = null;
@@ -32,10 +31,9 @@ document.addEventListener('DOMContentLoaded', function() {
   function sortUnorderedList() {
     var list = document.getElementsByClassName('list');
     for (var p = 0; p < list.length; p++) {
-      console.log(list[p].children);
+      // console.log(list[p].children);
       tinysort(list[p].children, {selector: 'span[data-time]', data: 'time', order: 'desc'});
     }
-    // tinysort('ul.list>li', {selector: 'span[data-time]', data: 'time', order: 'desc'});
   }
 
   // Set the slots all to - empty -  and data-time variable to when the user first visits the page...
@@ -47,18 +45,11 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementsByClassName('slot2Time')[k].dataset.time = firstVisitTime;
       document.getElementsByClassName('slot3Time')[k].dataset.time = firstVisitTime;
     }
-
-    // document.getElementsByClassName('slot1Time')[0].dataset.time = firstVisitTime;
-    // document.getElementsByClassName('slot2Time')[0].dataset.time = firstVisitTime;
-    // document.getElementsByClassName('slot3Time')[0].dataset.time = firstVisitTime;
   }
 
   // Update all the viewport slots in DOM...
   function updateSlotView(slotNum, slotName, slotTime) {
-    console.log('bang', document.getElementsByClassName( 'slot'+ slotNum + 'Name'));
-
     for(var g=0; g < document.getElementsByClassName( 'slot'+ slotNum + 'Name').length; g++){
-      console.log('this happens..', slotNum, slotName, slotTime);
       // Update the name on screen...
       document.getElementsByClassName( 'slot' + slotNum + 'Name')[g].innerHTML = slotName;
       // Update the time on screen...
@@ -99,7 +90,6 @@ document.addEventListener('DOMContentLoaded', function() {
       // console.log('Button Pressed: ', event.target.innerHTML);
       // console.log(event);
       // console.log(event.target.dataset.type);
-
 
       // If the button pressed is a number...
       if(event.target.dataset.type === 'num') {
@@ -205,11 +195,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Update the view
             updateSlotView(1, slotName, slotTime);
-            /*
-            document.getElementsByClassName('slot1Name')[0].innerHTML = slotName;
-            document.getElementsByClassName('slot1Time')[0].innerHTML = moment(slotTime).format('Do  MMM, h:mm a');
-            document.getElementsByClassName('slot1Time')[0].dataset.time = moment(slotTime).format('x');
-            */
+
             // Clear the numbers, Reset
             result = null;
             firstNum = null;
@@ -229,11 +215,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Update the view
             updateSlotView(2, slotName, slotTime);
-            /*
-            document.getElementsByClassName('slot2Name')[0].innerHTML = slotName;
-            document.getElementsByClassName('slot2Time')[0].innerHTML = moment(slotTime).format('Do  MMM, h:mm a');
-            document.getElementsByClassName('slot2Time')[0].dataset.time = moment(slotTime).format('x');
-            */
 
             // Clear the numbers, Reset
             result = null;
@@ -254,11 +235,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Update the view
             updateSlotView(3, slotName, slotTime);
-            /*
-            document.getElementsByClassName('slot3Name')[0].innerHTML = slotName;
-            document.getElementsByClassName('slot3Time')[0].innerHTML = moment(slotTime).format('Do  MMM, h:mm a');
-            document.getElementsByClassName('slot3Time')[0].dataset.time = moment(slotTime).format('x');
-            */
 
             // Clear the numbers, Reset
             result = null;
@@ -282,7 +258,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // If delete button in a slot is clicked...
       if(event.target.dataset.type === 'delete' ) {
         var obj = event.target.parentElement;
-        console.log('Thing clicked:', obj.getElementsByTagName('p')[0].innerHTML.includes('- empty -'));
+        // console.log('Thing clicked:', obj.getElementsByTagName('p')[0].innerHTML.includes('- empty -'));
 
         //If button clicked is an empty section prompt a message...
         if(obj.getElementsByTagName('p')[0].innerHTML.includes('- empty -')) {
@@ -298,30 +274,16 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'slot1':
               // console.log('deleting slot 1');
               slot1 = null;
-              /*document.getElementsByClassName('slot1Name')[0].innerHTML =  '- empty -';
-              document.getElementsByClassName('slot1Time')[0].innerHTML =  '- empty -';
-              document.getElementsByClassName('slot1Time')[0].dataset.time = firstVisitTime;
-              */
               deleteAndUpdateView(1);
               break;
             case 'slot2':
               // console.log('deleting slot 2');
               slot2 = null;
-              /*
-              document.getElementsByClassName('slot2Name')[0].innerHTML =  '- empty -';
-              document.getElementsByClassName('slot2Time')[0].innerHTML =  '- empty -';
-              document.getElementsByClassName('slot2Time')[0].dataset.time = firstVisitTime;
-              */
               deleteAndUpdateView(2);
               break;
             case 'slot3':
               // console.log('deleting slot 3');
               slot3 = null;
-              /*
-              document.getElementsByClassName('slot3Name')[0].innerHTML =  '- empty -';
-              document.getElementsByClassName('slot3Time')[0].innerHTML =  '- empty -';
-              document.getElementsByClassName('slot3Time')[0].dataset.time = firstVisitTime;
-              */
               deleteAndUpdateView(3);
               break;
           }
