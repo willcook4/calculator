@@ -2,7 +2,7 @@
 
 This Project was built for a code test.
 
-### See the working example here [link](http:) 
+### See the working example here [link](http:)
 
 ##### Task
 - Build a calculator where you can save your maths.
@@ -29,9 +29,9 @@ Using JavaScript I created an Express Node app. Gulp tasks made the use of SASS 
 HTML has been checked to be valid with https://validator.w3.org.
 
 ##### Future development
-
 - Add unit testing with a Mocha and Chai
 - Add in Babel into the gulp tasks and refactor the main.js file into JavaScript ES6
+- Further browser testing(Chrome and Safari tested so far).
 
 ##### To run this code yourself...
 - Clone this repo
