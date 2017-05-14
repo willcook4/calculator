@@ -1,8 +1,16 @@
+#Calculator
+**Mobile**
 ![calculator](./calc.png)
+
+**Tablet**
+![calculator on tablet](./calc-tablet.png)
+
+**Desktop**
+![cacluator on desktop](./calc-desktop.png)
 
 This Project was built for a code test.
 
-### See the working example here [link](http:)
+### See the working example here [link](https://safe-beyond-56415.herokuapp.com/)
 
 ##### Task
 - Build a calculator where you can save your maths.
@@ -24,14 +32,17 @@ prompt to submit a name
 *DELETE*: Remove a saved Math Name/Date from Saved Maths
 
 ##### My result
-Using JavaScript I created an Express Node app. Gulp tasks made the use of SASS and development easier. To make the responsive nature of the design easier I used a front-end framework called Skeleton. Sorting of the list was achieved by using the Tinysort library, a task that given the potential complexity could have taken a fair bit of vanilla JavaScript.
+Using JavaScript I created an Express Node app. Gulp tasks made the use of SASS and development easier. To make the responsive nature of the design easier I used a front-end framework called [Skeleton](http://getskeleton.com/). Sorting of the list was achieved by using the [TinySort](http://tinysort.sjeiti.com/index.html) library, a task that given the potential complexity could have taken a fair bit of vanilla JavaScript. [Moment](http://momentjs.com/) was used to make time handling easier and more human friendly on the front-end.
 
-HTML has been checked to be valid with https://validator.w3.org.
+HTML has been checked to be valid with [W3](https://validator.w3.org). JavaScript has been checked with ESLint.
+
+ES6 was used in 
 
 ##### Future development
-- Add unit testing with a Mocha and Chai
-- Add in Babel into the gulp tasks and refactor the main.js file into JavaScript ES6
+- Add unit testing with a Mocha and Chai.
+- Add in Babel into the gulp tasks and refactor the main.js file into JavaScript ES6.
 - Further browser testing(Chrome and Safari tested so far).
+- Get code and ensure all external libraries are production ready.
 
 ##### To run this code yourself...
 - Clone this repo
